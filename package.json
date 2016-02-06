@@ -1,0 +1,26 @@
+{
+  "name": "ads-ref-app",
+  "version": "0.1.0",
+  "devDependencies": {
+    "express": "^4.12.3",
+    "gulp": "^3.8.11",
+    "browserify": "^10.1.0",
+    "reactify": "^1.1.1",
+    "watchify": "^3.2.1",
+    "vinyl-source-stream": "^1.1.0",
+    "gulp-html-replace": "^1.4.5",
+    "gulp-uglify": "1.1.0",
+    "gulp-streamify": "^0.0.5",
+    "gulp-watch": "^4.2.4"
+  },
+  "dependencies": {
+    "promise": "^7.0.3",
+    "facebook-adssdk-node": "./facebook-adssdk-node/",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "react-bootstrap": "^0.22.4",
+    "react-chartjs": "^0.6.0"
+  },
+  "preferGlobal": false,
+  "private": true
+}

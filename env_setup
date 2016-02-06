@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# current dir
+CURR_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+# nodejs version
+NODE_VERSION=v0.12.0
+NODE_PATH=${CURR_DIR}/node
+
+# download, compile & install nodejs
+if [ ! -d "${NODE_PATH}" ]; then
+  TMP_PATH=${CURR_DIR}/tmp
+  if [ -d "${TMP_PATH}" ]; then
+    rm -rf "${TMP_PATH}"
+  fi
+  mkdir -p "${TMP_PATH}"
+  cd "${TMP_PATH}"
+
+  curl -O http://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}.tar.gz
+  tar -xzf node-${NODE_VERSION}.tar.gz
+
+  cd "node-${NODE_VERSION}"
+  ./configure --prefix "${NODE_PATH}"
+  make
+  mkdir -p "${NODE_PATH}"
+  make install
+
+  # clean up
+  rm -rf "${TMP_PATH}"
+fi

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# current dir
+CURR_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+NODE_BIN=${CURR_DIR}/node/bin
+
+# use nodejs install on the system if did not use env_setup
+NPM=${NODE_BIN}/npm
+NODE=${NODE_BIN}/node
+if [ ! -e "${NPM}" ]; then
+  type npm >/dev/null 2>&1 || {
+    echo 'Node.js is not available on this machine.'
+    echo 'You need to install nodejs (>=v0.12.0) or run ./env_setup.'
+    exit 1;
+  }
+  NPM=npm
+
+  NODE=node
+  type ${NODE} >/dev/null 2>&1 || {
+    NODE=nodejs
+  }
+  type ${NODE} >/dev/null 2>&1 || {
+    NODE=
+  }
+  if [ -z "${NODE}" ] || [ $(${NODE} -v) \< 'v0.12.' ]; then
+    echo 'Your Node.js version is too low.'
+    echo 'You need to install nodejs (>=v0.12.0) or run ./env_setup.'
+    exit 1;
+  fi
+fi
+
+# install npm packages
+cd ${CURR_DIR}
+${NPM} install
+
+# run gulp to bundle js
+${NODE} ${CURR_DIR}/node_modules/.bin/gulp

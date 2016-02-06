@@ -1,0 +1,8 @@
+{
+  "name": "facebook-adssdk-node",
+  "version": "2.3.7",
+  "description": "Node.js SDK for Facebook ads APIs. It can run as a Node.js module as well as in Web browsers through browserify",
+  "main": "adsAPI.js",
+  "author": "Facebook",
+  "license": "see LICENSE"
+}
